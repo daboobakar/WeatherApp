@@ -74,7 +74,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let date = Calendar.current.date(byAdding: .day, value: section, to: Date())
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.dateFormat = "EEEE, dd MMMM"
         
         return dateFormatter.string(from: date!)
     }
@@ -82,7 +82,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        let weatherObject = forecastData[indexPath.row]
+        let weatherObject = forecastData[indexPath.section]
         
         
         cell.textLabel?.text = weatherObject.summary
